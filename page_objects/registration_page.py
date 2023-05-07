@@ -4,6 +4,9 @@ from selene import browser, have
 
 
 class RegistrationPage:
+    def __init__(self):
+        self.date_of_birth = browser.element('#dateOfBirthInput')
+
     def open(self):
         browser.open('/automation-practice-form')
 
@@ -23,9 +26,9 @@ class RegistrationPage:
         browser.element('#userNumber').type(value)
 
     def fill_in_date_of_birth(self, day, month, year):
-        browser.element('#dateOfBirthInput').click()
+        self.date_of_birth.click()
         browser.execute_script('document.getElementById("dateOfBirthInput").value = ""')
-        browser.element('#dateOfBirthInput').send_keys(f'{day} {month} {year}').press_enter()
+        self.date_of_birth.send_keys(f'{day} {month} {year}').press_enter()
 
     def fill_in_subjects(self, value):
         browser.element('#subjectsInput').type(value).press_enter()
