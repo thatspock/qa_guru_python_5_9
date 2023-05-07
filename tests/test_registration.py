@@ -20,12 +20,11 @@ def test_registration_form():
     registration_page.select_state('NCR')
     registration_page.select_city('Delhi')
     registration_page.submit_form()
-    registration_page.form_submission.should(have.text('Thanks for submitting the form'))
+    registration_page.assert_form_submission_text('Thanks for submitting the form')
     # THEN
-    registration_page.user_data.should(
-        have.exact_texts(
-            'Student Name Mr Spock', 'Student Email mrspock@enterprise.com', 'Gender Male',
-            'Mobile 1800666553', 'Date of Birth 13 May,1985', 'Subjects English', 'Hobbies Sports',
-            'Picture test.jpg', 'Address Enterprise (NCC-1701)', 'State and City NCR Delhi'
-        ))
+    registration_page.assert_user_data(
+        'Student Name Mr Spock', 'Student Email mrspock@enterprise.com', 'Gender Male',
+        'Mobile 1800666553', 'Date of Birth 13 May,1985', 'Subjects English', 'Hobbies Sports',
+        'Picture test.jpg', 'Address Enterprise (NCC-1701)', 'State and City NCR Delhi'
+    )
     registration_page.close_submission_form()

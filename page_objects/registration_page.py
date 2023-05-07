@@ -48,13 +48,11 @@ class RegistrationPage:
     def submit_form(self):
         browser.execute_script('document.getElementById("submit").click()')
 
-    @property
-    def form_submission(self):
-        return browser.element('#example-modal-sizes-title-lg')
+    def assert_form_submission_text(self, expected_text):
+        browser.element('#example-modal-sizes-title-lg').should(have.text(expected_text))
 
-    @property
-    def user_data(self):
-        return browser.all('tbody tr')
+    def assert_user_data(self, *values):
+        browser.all('tbody tr').should(have.exact_texts(values))
 
     def close_submission_form(self):
         browser.element('#closeLargeModal').click()
