@@ -2,6 +2,9 @@ import os
 
 from selene import browser, have
 
+from data.users import User
+from tests.constants import THANKS_FOR_SUBMITTING_TEXT
+
 
 class RegistrationPage:
 
@@ -27,7 +30,8 @@ class RegistrationPage:
     def date_of_birth(self):
         return browser.element('#dateOfBirthInput')
 
-    def fill_in_date_of_birth(self, day, month, year):
+    def fill_in_date_of_birth(self, date_of_birth):
+        day, month, year = date_of_birth
         self.date_of_birth.click()
         browser.execute_script('document.getElementById("dateOfBirthInput").value = ""')
         self.date_of_birth.send_keys(f'{day} {month} {year}').press_enter()
@@ -56,8 +60,40 @@ class RegistrationPage:
     def assert_form_submission_text(self, expected_text):
         browser.element('#example-modal-sizes-title-lg').should(have.text(expected_text))
 
-    def assert_user_data(self, *values):
-        browser.all('tbody tr').should(have.exact_texts(values))
+    def assert_user_data(self, student: User):
+        expected_values = [
+            f'Student Name {student.first_name} {student.last_name}',
+            f'Student Email {student.email}',
+            f'Gender {student.gender}',
+            f'Mobile {student.phone_number}',
+            f'Date of Birth {student.date_of_birth[0]} {student.date_of_birth[1]},{student.date_of_birth[2]}',
+            f'Subjects {student.subject}',
+            f'Hobbies {student.hobby}',
+            f'Picture {student.picture_file}',
+            f'Address {student.address}',
+            f'State and City {student.state} {student.city}'
+        ]
+        browser.all('tbody tr').should(have.exact_texts(*expected_values))
 
     def close_submission_form(self):
         browser.element('#closeLargeModal').click()
+
+    def register(self, student: User):
+        self.fill_in_first_name(student.first_name)
+        self.fill_in_last_name(student.last_name)
+        self.fill_in_email(student.email)
+        self.pick_gender(student.gender)
+        self.fill_in_phone_number(student.phone_number)
+        self.fill_in_date_of_birth(student.date_of_birth)
+        self.fill_in_subjects(student.subject)
+        self.pick_hobby(student.hobby)
+        self.upload_picture_file(student.picture_file)
+        self.fill_in_address(student.address)
+        self.select_state(student.state)
+        self.select_city(student.city)
+        self.submit_form()
+
+    def should_have_registered(self, student: User):
+        self.assert_form_submission_text(THANKS_FOR_SUBMITTING_TEXT)
+        self.assert_user_data(student)
+        self.close_submission_form()
