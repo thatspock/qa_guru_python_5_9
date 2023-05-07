@@ -4,8 +4,6 @@ from selene import browser, have
 
 
 class RegistrationPage:
-    def __init__(self):
-        self.date_of_birth = browser.element('#dateOfBirthInput')
 
     def open(self):
         browser.open('/automation-practice-form')
@@ -24,6 +22,10 @@ class RegistrationPage:
 
     def fill_in_phone_number(self, value):
         browser.element('#userNumber').type(value)
+
+    @property
+    def date_of_birth(self):
+        return browser.element('#dateOfBirthInput')
 
     def fill_in_date_of_birth(self, day, month, year):
         self.date_of_birth.click()
