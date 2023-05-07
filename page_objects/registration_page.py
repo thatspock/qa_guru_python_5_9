@@ -92,8 +92,8 @@ class RegistrationPage:
         self.select_state(student.state)
         self.select_city(student.city)
         self.submit_form()
+        self.assert_form_submission_text(THANKS_FOR_SUBMITTING_TEXT)
 
     def should_have_registered(self, student: User):
-        self.assert_form_submission_text(THANKS_FOR_SUBMITTING_TEXT)
         self.assert_user_data(student)
         self.close_submission_form()
