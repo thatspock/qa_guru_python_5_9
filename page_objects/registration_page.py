@@ -61,12 +61,14 @@ class RegistrationPage:
         browser.element('#example-modal-sizes-title-lg').should(have.text(expected_text))
 
     def assert_user_data(self, student: User):
+        full_name = f'{student.first_name} {student.last_name}'
+        full_birthday = f'{student.date_of_birth[0]} {student.date_of_birth[1]},{student.date_of_birth[2]}'
         expected_values = [
-            f'Student Name {student.first_name} {student.last_name}',
+            f'Student Name {full_name}',
             f'Student Email {student.email}',
             f'Gender {student.gender}',
             f'Mobile {student.phone_number}',
-            f'Date of Birth {student.date_of_birth[0]} {student.date_of_birth[1]},{student.date_of_birth[2]}',
+            f'Date of Birth {full_birthday}',
             f'Subjects {student.subject}',
             f'Hobbies {student.hobby}',
             f'Picture {student.picture_file}',
