@@ -46,7 +46,7 @@ class RegistrationPage:
     def fill_in_subjects(self, value):
         browser.element('#subjectsInput').type(value).press_enter()
 
-    @allure.step('Pick hobby with value: {value')
+    @allure.step('Pick hobby with value: {value}')
     def pick_hobby(self, value):
         browser.all('.custom-control-label').element_by(have.exact_text(value)).click()
 
@@ -96,7 +96,7 @@ class RegistrationPage:
     def close_submission_form(self):
         browser.element('#closeLargeModal').click()
 
-    @allure.step('Registering the user {student.first_name} {student.last_name}')
+    @allure.step('Registering the user')
     def register(self, student: User):
         self.fill_in_first_name(student.first_name)
         self.fill_in_last_name(student.last_name)
