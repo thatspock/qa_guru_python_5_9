@@ -6,7 +6,8 @@ import os
 @pytest.fixture(scope='function', autouse=True)
 def browser_management():
     # browser.driver.maximize_window()
-    chromedriver_path = os.path.abspath('drivers/chromedriver')
+    project_root = os.path.abspath(os.path.dirname(__file__))
+    chromedriver_path = os.path.join(project_root, 'drivers', 'chromedriver')
     driver = webdriver.Chrome(chromedriver_path)
     driver.set_window_size(1920, 1200)
     browser.config.driver = lambda: driver
