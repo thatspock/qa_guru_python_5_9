@@ -2,7 +2,8 @@ import allure
 from allure_commons.types import Severity
 from page_objects.registration_page import RegistrationPage
 from data.users import student
-
+from utils import attachment
+from selene import browser
 
 @allure.tag('DemoQA')
 @allure.description("This test covers the complete student registration procedure, from form filling to submission.")
@@ -16,3 +17,8 @@ def test_registration_form():
     registration_page.open()
     registration_page.register(student)
     registration_page.should_have_registered(student)
+
+    attachment.add_screenshot(browser)
+    attachment.add_logs(browser)
+    attachment.add_html(browser)
+
