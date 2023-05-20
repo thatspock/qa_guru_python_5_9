@@ -1,6 +1,5 @@
 import allure
 from allure_commons.types import Severity
-
 from page_objects.registration_page import RegistrationPage
 from data.users import student
 
