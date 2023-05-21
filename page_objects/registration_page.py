@@ -52,7 +52,8 @@ class RegistrationPage:
 
     @allure.step('Upload picture with value: {value}')
     def upload_picture_file(self, value):
-        browser.element('#uploadPicture').send_keys(os.path.abspath(f'../resourсes/{value}'))
+        file_path = os.path.join(os.environ['WORKSPACE'], 'resources', 'test.jpg')
+        browser.element('#uploadPicture').send_keys(os.path.abspath(file_path))
 
     @allure.step('Filling in address with value: {value}')
     def fill_in_address(self, value):
