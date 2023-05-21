@@ -1,5 +1,6 @@
 import os
 import allure
+import requests
 from selene import browser, have
 from data.users import User
 from tests.constants import THANKS_FOR_SUBMITTING_TEXT
@@ -51,10 +52,14 @@ class RegistrationPage:
 
     @allure.step('Upload picture with value: {value}')
     def upload_picture_file(self, value):
-        current_path = os.path.dirname(__file__)
-        file_path = os.path.join(current_path, '..', 'resources', value)
-        absolute_file_path = os.path.abspath(file_path)
-        browser.element('#uploadPicture').send_keys(absolute_file_path)
+        image_url = 'https://previews.dropbox.com/p/thumb/AB7mS52NA0IVhgirXwLPrlXEzOHn0LhkrfYLPkkJwz-zUlUgTsU4DzL_LCaJzwfsnNX-NDVpEvEIw-4NtKnuYR6wl0FXXeNxsPguQgKYuV1ZFEquSTFh2sekzPrIhVugzU0AtNVq9fAfjrCZ1jZJ1_ggI4oSJ4je0GoolwDpoLOOAa-1meBaFP5ymzM-pQamcxp3MVF2W8AYHTgRfbF2aGHV4Mog8Wq1BmcOX0F9CLsIUhjGUYer_4PU_FRqDxH8ZdFXR_GfEaoCO2880rPjvGd-xLfck6swk0ZslTjTEItyFSCqyA1uW9W5r2v04LTyfzKmQyZlIkSdQVfSgTA2-9y-YKp-dRDOPaWfYEKIJmxLiJDkz2Vkax6Cf_S2UPGI9oI/p.jpeg'
+        image_content = requests.get(image_url).content
+
+        with open('test.jpg', 'wb') as f:
+            f.write(image_content)
+
+        browser.element('#uploadPicture').send_keys(os.path.abspath('test.jpg'))
+        # browser.element('#uploadPicture').send_keys(os.path.abspath(f'../resourсes/{value}'))
 
     @allure.step('Filling in address with value: {value}')
     def fill_in_address(self, value):
