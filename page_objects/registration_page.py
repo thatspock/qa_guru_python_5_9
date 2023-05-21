@@ -1,7 +1,6 @@
 import os
 import allure
 from selene import browser, have
-
 from data.users import User
 from tests.constants import THANKS_FOR_SUBMITTING_TEXT
 
@@ -52,7 +51,10 @@ class RegistrationPage:
 
     @allure.step('Upload picture with value: {value}')
     def upload_picture_file(self, value):
-        browser.element('#uploadPicture').send_keys(os.path.abspath(f'../resourсes/{value}'))
+        current_path = os.path.dirname(__file__)
+        file_path = os.path.join(current_path, '..', 'resources', value)
+        absolute_file_path = os.path.abspath(file_path)
+        browser.element('#uploadPicture').send_keys(absolute_file_path)
 
     @allure.step('Filling in address with value: {value}')
     def fill_in_address(self, value):
