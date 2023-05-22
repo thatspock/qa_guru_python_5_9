@@ -1,7 +1,7 @@
 import os
 import allure
 import requests
-from selene import have, browser
+from selene import browser, have
 from data.users import User
 from tests.constants import THANKS_FOR_SUBMITTING_TEXT
 

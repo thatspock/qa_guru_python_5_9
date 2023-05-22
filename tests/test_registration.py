@@ -3,6 +3,7 @@ from allure_commons.types import Severity
 from page_objects.registration_page import RegistrationPage
 from data.users import student
 from utils.attachment import AllureAttachmentManager
+from selene import browser
 
 
 @allure.tag('DemoQA')
@@ -18,5 +19,5 @@ def test_registration_form():
     registration_page.register(student)
     registration_page.should_have_registered(student)
 
-    allure_attachments = AllureAttachmentManager()
+    allure_attachments = AllureAttachmentManager(browser)
     allure_attachments.gather_all_attachments()
