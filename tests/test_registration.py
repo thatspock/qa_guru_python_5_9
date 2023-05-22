@@ -13,7 +13,7 @@ from selene import browser
 @allure.feature('Student Registration Form')
 @allure.story("Complete Student Registration Procedure")
 @allure.link('https://demoqa.com/automation-practice-form', name='Testing')
-def test_registration_form():
+def test_registration_form(browser_management):
     registration_page = RegistrationPage()
     registration_page.open()
     registration_page.register(student)
