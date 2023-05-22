@@ -18,6 +18,3 @@ def test_registration_form():
     registration_page.open()
     registration_page.register(student)
     registration_page.should_have_registered(student)
-
-    allure_attachments = AllureAttachmentManager(browser)
-    allure_attachments.gather_all_attachments()
