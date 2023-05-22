@@ -24,4 +24,4 @@ def browser_management():
 
     browser.config.driver = driver
     browser.driver.set_window_size(1920, 1200)
-# browser.config.base_url = 'https://demoqa.com'
+    browser.config.base_url = 'https://demoqa.com'

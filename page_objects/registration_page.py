@@ -7,10 +7,9 @@ from tests.constants import THANKS_FOR_SUBMITTING_TEXT
 
 
 class RegistrationPage:
-
     @allure.step('Open automation practice form')
     def open(self):
-        browser.open('https://demoqa.com/automation-practice-form')
+        browser.open('/automation-practice-form')
 
     @allure.step('Filling in first name with value: {value}')
     def fill_in_first_name(self, value):
