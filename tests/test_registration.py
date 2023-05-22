@@ -2,6 +2,7 @@ import allure
 from allure_commons.types import Severity
 from page_objects.registration_page import RegistrationPage
 from data.users import student
+from utils.attachment import AllureAttachmentManager
 
 
 @allure.tag('DemoQA')
@@ -11,9 +12,11 @@ from data.users import student
 @allure.feature('Student Registration Form')
 @allure.story("Complete Student Registration Procedure")
 @allure.link('https://demoqa.com/automation-practice-form', name='Testing')
-def test_registration_form(browser_management):
-    browser = browser_management()
-    registration_page = RegistrationPage(browser)
+def test_registration_form():
+    registration_page = RegistrationPage()
     registration_page.open()
     registration_page.register(student)
     registration_page.should_have_registered(student)
+
+    allure_attachments = AllureAttachmentManager()
+    allure_attachments.gather_all_attachments()

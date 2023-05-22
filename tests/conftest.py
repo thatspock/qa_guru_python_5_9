@@ -1,12 +1,10 @@
 import pytest
-from selene import Browser, Config
 from selenium import webdriver
 from selenium.webdriver.chrome.options import Options
+from selene import browser
 
-from utils.attachment import AllureAttachmentManager
 
-
-@pytest.fixture(scope='function', autouse=True)
+@pytest.fixture(scope='function')
 def browser_management():
     options = Options()
     selenoid_capabilities = {
@@ -24,13 +22,6 @@ def browser_management():
         command_executor="https://user1:1234@selenoid.autotests.cloud/wd/hub",
         options=options)
 
-    browser = Browser(Config(driver))
-    yield browser
-
-    allure_attachments = AllureAttachmentManager(browser)
-    allure_attachments.gather_all_attachments()
-
-# browser.config.driver = driver
-
-# browser.driver.set_window_size(1920, 1200)
+    browser.config.driver = driver
+    browser.driver.set_window_size(1920, 1200)
 # browser.config.base_url = 'https://demoqa.com'
