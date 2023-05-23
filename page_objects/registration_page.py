@@ -3,7 +3,7 @@ import allure
 import requests
 from selene import have
 from data.users import User
-from tests.constants import THANKS_FOR_SUBMITTING_TEXT, PICTURE_FILE
+from tests.constants import THANKS_FOR_SUBMITTING_TEXT, PICTURE_FILE, URL_DEMOQA
 
 
 class RegistrationPage():
@@ -12,7 +12,7 @@ class RegistrationPage():
 
     @allure.step('Open automation practice form')
     def open(self):
-        self.browser.open('https://demoqa.com/automation-practice-form')
+        self.browser.open(URL_DEMOQA)
 
     @allure.step('Filling in first name with value: {value}')
     def fill_in_first_name(self, value):
@@ -54,7 +54,7 @@ class RegistrationPage():
         self.browser.all('.custom-control-label').element_by(have.exact_text(value)).click()
 
     @allure.step('Upload picture with value: {value}')
-    def upload_picture_file(self):
+    def upload_picture_file(self, value):
         image_url = PICTURE_FILE
         image_content = requests.get(image_url).content
 

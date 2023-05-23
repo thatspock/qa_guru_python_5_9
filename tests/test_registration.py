@@ -2,6 +2,7 @@ import allure
 from allure_commons.types import Severity
 from data.users import student
 from page_objects.registration_page import RegistrationPage
+from tests.constants import URL_DEMOQA
 
 
 @allure.tag('DemoQA')
@@ -10,7 +11,7 @@ from page_objects.registration_page import RegistrationPage
 @allure.label('owner', 'mr spock')
 @allure.feature('Student Registration Form')
 @allure.story("Complete Student Registration Procedure")
-@allure.link('https://demoqa.com/automation-practice-form', name='Testing')
+@allure.link(URL_DEMOQA, name='Testing')
 def test_registration_form(browser_management):
     browser = browser_management
     registration_page = RegistrationPage(browser)
