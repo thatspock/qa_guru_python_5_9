@@ -5,15 +5,23 @@ from selene import Browser, Config
 from utils.attachment import AllureAttachmentManager
 
 
+def pytest_addoption(parser):
+    parser.addoption(
+        '--browser-version',
+        default='100.0'
+    )
+
+
 @pytest.fixture(scope='function', autouse=True)
-def browser_management():
+def browser_management(request):
+    browser_version = request.config.getoption('--browser-version')
     options = Options()
     selenoid_capabilities = {
-        "browserName": "chrome",
-        "browserVersion": "100.0",
-        "selenoid:options": {
-            "enableVNC": True,
-            "enableVideo": True
+        'browserName': 'chrome',
+        'browserVersion': browser_version,
+        'selenoid:options': {
+            'enableVNC': True,
+            'enableVideo': True
         }
     }
 
@@ -29,6 +37,3 @@ def browser_management():
 
     allure_attachments = AllureAttachmentManager(browser)
     allure_attachments.gather_all_attachments()
-
-# browser.driver.set_window_size(1920, 1200)
-# browser.config.base_url = 'https://demoqa.com'
