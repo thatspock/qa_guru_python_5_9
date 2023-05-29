@@ -1,7 +1,8 @@
 {
   "base": {
     "project": "Telegram Notifications",
-    "comment": "Automated Test Report: All tests have been successfully completed. See the detailed report for further insights and statistics",
+    "environment": "some env",
+    "comment": "Project deployment was successful and all test cases have passed.",
     "reportLink": "",
     "language": "en",
     "messenger": "telegram",
