@@ -3,7 +3,7 @@
     "project": "Telegram Notifications",
     "environment": "some env",
     "comment": "Project deployment was successful and all test cases have passed.",
-    "reportLink": "",
+    "reportLink": "${BUILD_URL}",
     "language": "en",
     "messenger": "telegram",
     "allureFolder": "allure-report/",
