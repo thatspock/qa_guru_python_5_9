@@ -1,9 +1,7 @@
 {
   "base": {
-    "project": "some project",
-    "environment": "some env",
-    "comment": "some comment",
-    "reportLink": "",
+    "project": "Telegram Notifications",
+    "comment": "Automated Test Report: All tests have been successfully completed. See the detailed report for further insights and statistics",
     "language": "en",
     "messenger": "telegram",
     "allureFolder": "allure-report/",
@@ -11,7 +9,6 @@
   },
   "telegram": {
     "token": "6010220385:AAH0eJMCtaYR6nagOC8xCLQQfwGZUkkiR5o",
-    "chat": "-1001944728224",
-    "replyTo": ""
+    "chat": "-1001944728224"
   }
 }
